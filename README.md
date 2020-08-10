@@ -20,6 +20,5 @@ https://offenedaten.aachen.de/de/dataset/geschwindigkeitskontrollen
 
 #### IFG für Berlin:
 
-Anfrage der Daten für Berlin (zunächst Polizei anschließend ggf. SenUVK):
-
+Anfrage der Daten für Berlin (zunächst Polizei anschließend ggf. SenUVK):  
 https://fragdenstaat.de/anfrage/geschwindigkeitskontrollen-von-kfz-in-berlin/
