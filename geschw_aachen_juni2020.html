@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_0b3d1b3d26454cda99fd470b414ccc55 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+                <div style="position: fixed; 
+                            top: 50px; right: 50px; width: 130px; height: 130px; 
+                            z-index:9998; font-size:14px; border-radius: 5px;
+                            border:2px solid grey;
+                            background-color: white; opacity: 0.9;
+                            ">
+                </div>
+                
+                <div style="position: fixed; 
+                            top: 50px; right: 50px; width: 130px; height: 150px; padding-top:5px;
+                             z-index:9999; font-size:14px;
+                        
+                            ">&nbsp;<b> Anteil Verstöße </b><br>
+                              &nbsp;&nbsp;&nbsp;&nbsp;                > 10 % &nbsp; <i class="fa fa-map-marker fa-2x" style="color:red"></i><br>
+                              &nbsp;&nbsp;                          5 - 10 % &nbsp; <i class="fa fa-map-marker fa-2x" style="color:orange"></i><br>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     < 5 % &nbsp; <i class="fa fa-map-marker fa-2x" style="color:green"></i>
+                </div>
+                
+    
+            <div class="folium-map" id="map_0b3d1b3d26454cda99fd470b414ccc55" ></div>
+        
+</body>
+<script>    
+    
+            var map_0b3d1b3d26454cda99fd470b414ccc55 = L.map(
+                "map_0b3d1b3d26454cda99fd470b414ccc55",
+                {
+                    center: [50.75, 6.1],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 13,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3fa6e768a00347a6a2fb9c2e10f7db8e = L.tileLayer(
+                "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"http://cartodb.com/attributions\"\u003eCartoDB\u003c/a\u003e, CartoDB \u003ca href =\"http://cartodb.com/attributions\"\u003eattributions\u003c/a\u003e | \u0026copy; \u003ca href=\"https://offenedaten.aachen.de/de/dataset/geschwindigkeitskontrollen\"\u003eStadt Aachen\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var marker_4fc4c5a967ba4688bd1cf03283cf1ad5 = L.marker(
+                [50.8151902, 6.0584875],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_02bf939c4bb544fa9d944b42d1ff3113 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_4fc4c5a967ba4688bd1cf03283cf1ad5.setIcon(icon_02bf939c4bb544fa9d944b42d1ff3113);
+        
+    
+            marker_4fc4c5a967ba4688bd1cf03283cf1ad5.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-02</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Horbacher Straße</b><br>Fahrtrichtung: <b>Roermonder Straße</b><br>Fahrzeuge gesamt: <b>408</b><br>bis 15 km/h  : <b>42</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>10.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e60ebe588d3c4d939313e670a1dc4b7a = L.marker(
+                [50.7643678, 6.1499542],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_79e9218427d844b999d3e52c53f299d9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_e60ebe588d3c4d939313e670a1dc4b7a.setIcon(icon_79e9218427d844b999d3e52c53f299d9);
+        
+    
+            marker_e60ebe588d3c4d939313e670a1dc4b7a.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-02</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Neuenhofstraße</b><br>Fahrtrichtung: <b>Debystraße</b><br>Fahrzeuge gesamt: <b>348</b><br>bis 15 km/h  : <b>48</b><br>über 15 km/h: <b>3</b><br>Anteil Verstöße: <b>14.7%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fb8b8eee02e64174bb7edffdd09e804c = L.marker(
+                [50.783848, 6.1579643],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_714792814aa046cf914a6a2176a13956 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_fb8b8eee02e64174bb7edffdd09e804c.setIcon(icon_714792814aa046cf914a6a2176a13956);
+        
+    
+            marker_fb8b8eee02e64174bb7edffdd09e804c.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-02</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Nirmer Straße</b><br>Fahrtrichtung: <b>Kalkbergstraße</b><br>Fahrzeuge gesamt: <b>180</b><br>bis 15 km/h  : <b>22</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>12.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b8d0d8141b7e46598558ed9043249190 = L.marker(
+                [50.7112319, 6.1289438],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_e841c36df3ae4b27a9aa84fa0e56533a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_b8d0d8141b7e46598558ed9043249190.setIcon(icon_e841c36df3ae4b27a9aa84fa0e56533a);
+        
+    
+            marker_b8d0d8141b7e46598558ed9043249190.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-02</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Kesselstraße</b><br>Fahrtrichtung: <b>Monschauer Straße</b><br>Fahrzeuge gesamt: <b>147</b><br>bis 15 km/h  : <b>26</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>19.0%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_99418ae215bb43819a07d3fe165950b8 = L.marker(
+                [50.7528037, 6.0738311],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_c7c6c6529ec14b9c9cf87c7da98f9c87 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_99418ae215bb43819a07d3fe165950b8.setIcon(icon_c7c6c6529ec14b9c9cf87c7da98f9c87);
+        
+    
+            marker_99418ae215bb43819a07d3fe165950b8.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-02</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Maria Theresia Allee</b><br>Fahrtrichtung: <b>Luxemburger Ring</b><br>Fahrzeuge gesamt: <b>61</b><br>bis 15 km/h  : <b>14</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>24.6%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bb3b6547e97143aab46cae16b6d63308 = L.marker(
+                [50.754991, 6.0724065],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_e41cb956402549a5996c5442dcc35c41 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_bb3b6547e97143aab46cae16b6d63308.setIcon(icon_e41cb956402549a5996c5442dcc35c41);
+        
+    
+            marker_bb3b6547e97143aab46cae16b6d63308.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-02</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Kaiser Friedrich Allee</b><br>Fahrtrichtung: <b>Brüsseler Ring</b><br>Fahrzeuge gesamt: <b>289</b><br>bis 15 km/h  : <b>44</b><br>über 15 km/h: <b>6</b><br>Anteil Verstöße: <b>17.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f266eaf66530439c89bdf0e834e8b2e3 = L.marker(
+                [50.7634569, 6.1216077],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_08944c97f52f41a78a8287a3f081d876 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_f266eaf66530439c89bdf0e834e8b2e3.setIcon(icon_08944c97f52f41a78a8287a3f081d876);
+        
+    
+            marker_f266eaf66530439c89bdf0e834e8b2e3.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-02</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Adenauerallee</b><br>Fahrtrichtung: <b>Monschauer Straße</b><br>Fahrzeuge gesamt: <b>739</b><br>bis 15 km/h  : <b>25</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>3.7%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1ba4e9ff530c4e4788fb1ed96c440a86 = L.marker(
+                [50.7308523, 6.1730085],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_4dba9c5b08b84b069ed5fbc9df6eb1f0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_1ba4e9ff530c4e4788fb1ed96c440a86.setIcon(icon_4dba9c5b08b84b069ed5fbc9df6eb1f0);
+        
+    
+            marker_1ba4e9ff530c4e4788fb1ed96c440a86.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-03</b><br>Wochentag: <b>Wednesday</b><br>Messplatz: <b>Münsterstraße</b><br>Fahrtrichtung: <b>Brand</b><br>Fahrzeuge gesamt: <b>184</b><br>bis 15 km/h  : <b>47</b><br>über 15 km/h: <b>12</b><br>Anteil Verstöße: <b>32.1%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ba017b7a403b4771a8a420ecd84cee93 = L.marker(
+                [50.7707286, 6.2335401],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_29bef4637ca34e23bfeeb6dbe7839e5f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_ba017b7a403b4771a8a420ecd84cee93.setIcon(icon_29bef4637ca34e23bfeeb6dbe7839e5f);
+        
+    
+            marker_ba017b7a403b4771a8a420ecd84cee93.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-03</b><br>Wochentag: <b>Wednesday</b><br>Messplatz: <b>Josef von Görres Straße</b><br>Fahrtrichtung: <b>Europaplatz</b><br>Fahrzeuge gesamt: <b>682</b><br>bis 15 km/h  : <b>15</b><br>über 15 km/h: <b>3</b><br>Anteil Verstöße: <b>2.6%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_21115f3a1dd14cc08dd479e3ff2b529e = L.marker(
+                [50.7624664, 6.0967836],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_8c79e9722f104886b43a7c9ff6b14d35 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_21115f3a1dd14cc08dd479e3ff2b529e.setIcon(icon_8c79e9722f104886b43a7c9ff6b14d35);
+        
+    
+            marker_21115f3a1dd14cc08dd479e3ff2b529e.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-04</b><br>Wochentag: <b>Thursday</b><br>Messplatz: <b>Karl Marx Allee</b><br>Fahrtrichtung: <b>Friedrich Ebert Allee</b><br>Fahrzeuge gesamt: <b>508</b><br>bis 15 km/h  : <b>37</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>7.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e59b51b6d7d24862acbb4be3d39a4b82 = L.marker(
+                [50.7563898, 6.1448032],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_0025ce1f88eb423190b256ec85281c99 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_e59b51b6d7d24862acbb4be3d39a4b82.setIcon(icon_0025ce1f88eb423190b256ec85281c99);
+        
+    
+            marker_e59b51b6d7d24862acbb4be3d39a4b82.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-05</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Königsberger Straße</b><br>Fahrtrichtung: <b>Graunhof</b><br>Fahrzeuge gesamt: <b>42</b><br>bis 15 km/h  : <b>3</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>9.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d0ac26ffa9114653b70272b3fa88523e = L.marker(
+                [50.7496982, 6.0869299],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_75ed1e54e34545d4a9e6966ba2d0077d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_d0ac26ffa9114653b70272b3fa88523e.setIcon(icon_75ed1e54e34545d4a9e6966ba2d0077d);
+        
+    
+            marker_d0ac26ffa9114653b70272b3fa88523e.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-05</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Eupener Straße</b><br>Fahrtrichtung: <b>Salierallee</b><br>Fahrzeuge gesamt: <b>506</b><br>bis 15 km/h  : <b>58</b><br>über 15 km/h: <b>5</b><br>Anteil Verstöße: <b>12.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7f9a79aaf0fa4d4d8fd3c39f055f94cc = L.marker(
+                [50.797711, 6.12439],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_b4ff09deafd141baaea6c8cc40c8d9f4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_7f9a79aaf0fa4d4d8fd3c39f055f94cc.setIcon(icon_b4ff09deafd141baaea6c8cc40c8d9f4);
+        
+    
+            marker_7f9a79aaf0fa4d4d8fd3c39f055f94cc.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-05</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Friedenstraße</b><br>Fahrtrichtung: <b>In den Atzenbenden</b><br>Fahrzeuge gesamt: <b>172</b><br>bis 15 km/h  : <b>20</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>12.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_80eda071b9374212b371b2d6ea371b58 = L.marker(
+                [50.7994993, 6.0951585],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_42814302c6b5449eb19cd2c1e2c24d24 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_80eda071b9374212b371b2d6ea371b58.setIcon(icon_42814302c6b5449eb19cd2c1e2c24d24);
+        
+    
+            marker_80eda071b9374212b371b2d6ea371b58.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-06</b><br>Wochentag: <b>Saturday</b><br>Messplatz: <b>Soerser Weg</b><br>Fahrtrichtung: <b>Krefelder Straße</b><br>Fahrzeuge gesamt: <b>58</b><br>bis 15 km/h  : <b>4</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>6.9%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_816d02e61dc4493e8e3aa6457965167a = L.marker(
+                [50.6988915, 6.1332299],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_ed8ade69dfbb4e2f882b71d244e5b511 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_816d02e61dc4493e8e3aa6457965167a.setIcon(icon_ed8ade69dfbb4e2f882b71d244e5b511);
+        
+    
+            marker_816d02e61dc4493e8e3aa6457965167a.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-06</b><br>Wochentag: <b>Saturday</b><br>Messplatz: <b>Raerener Straße</b><br>Fahrtrichtung: <b>Monschauer Straße</b><br>Fahrzeuge gesamt: <b>261</b><br>bis 15 km/h  : <b>49</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>19.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_db0c8606584140b991a8c74bfd45aeb3 = L.marker(
+                [50.7497982, 6.0869299],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_f35e68284fe146f1b72c207d93f161aa = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_db0c8606584140b991a8c74bfd45aeb3.setIcon(icon_f35e68284fe146f1b72c207d93f161aa);
+        
+    
+            marker_db0c8606584140b991a8c74bfd45aeb3.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-06</b><br>Wochentag: <b>Saturday</b><br>Messplatz: <b>Eupener Straße</b><br>Fahrtrichtung: <b>Grenze</b><br>Fahrzeuge gesamt: <b>783</b><br>bis 15 km/h  : <b>91</b><br>über 15 km/h: <b>12</b><br>Anteil Verstöße: <b>13.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0964aafaefb84385adfe91bdd028616c = L.marker(
+                [50.763556900000005, 6.1216077],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_bbc47cc08118442790810621fb7f7137 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_0964aafaefb84385adfe91bdd028616c.setIcon(icon_bbc47cc08118442790810621fb7f7137);
+        
+    
+            marker_0964aafaefb84385adfe91bdd028616c.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-07</b><br>Wochentag: <b>Sunday</b><br>Messplatz: <b>Adenauerallee</b><br>Fahrtrichtung: <b>Trierer Straße</b><br>Fahrzeuge gesamt: <b>135</b><br>bis 15 km/h  : <b>13</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>11.1%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c00a9b6cdf8c452384583ddb5e7a56b1 = L.marker(
+                [50.7691247, 6.0579396],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_fd9cfe8095564e62b7848d7673a3dea7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_c00a9b6cdf8c452384583ddb5e7a56b1.setIcon(icon_fd9cfe8095564e62b7848d7673a3dea7);
+        
+    
+            marker_c00a9b6cdf8c452384583ddb5e7a56b1.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-07</b><br>Wochentag: <b>Sunday</b><br>Messplatz: <b>Vaalser Straße</b><br>Fahrtrichtung: <b>Innenstadt</b><br>Fahrzeuge gesamt: <b>644</b><br>bis 15 km/h  : <b>21</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>3.4%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_28d7327365eb4b4fb97e8e9b9fc0f8de = L.marker(
+                [50.7396059, 6.0511481],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_891b734307f44f1f8b718ccb41e3fa1d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_28d7327365eb4b4fb97e8e9b9fc0f8de.setIcon(icon_891b734307f44f1f8b718ccb41e3fa1d);
+        
+    
+            marker_28d7327365eb4b4fb97e8e9b9fc0f8de.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-07</b><br>Wochentag: <b>Sunday</b><br>Messplatz: <b>Lütticher Straße</b><br>Fahrtrichtung: <b>Belgien</b><br>Fahrzeuge gesamt: <b>457</b><br>bis 15 km/h  : <b>14</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>3.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8675dba5e9c046008bcc351be8870473 = L.marker(
+                [50.698991500000005, 6.1332299],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_3c5d1a02786a4a4782092ab3d88355a1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_8675dba5e9c046008bcc351be8870473.setIcon(icon_3c5d1a02786a4a4782092ab3d88355a1);
+        
+    
+            marker_8675dba5e9c046008bcc351be8870473.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-08</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Raerener Straße</b><br>Fahrtrichtung: <b>Monschauer Straße</b><br>Fahrzeuge gesamt: <b>418</b><br>bis 15 km/h  : <b>96</b><br>über 15 km/h: <b>13</b><br>Anteil Verstöße: <b>26.1%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_16e9550f966b46bca7937a8e00402912 = L.marker(
+                [50.752903700000005, 6.0738311],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_91ca630e9fc544fcb81e0ab90949cee6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_16e9550f966b46bca7937a8e00402912.setIcon(icon_91ca630e9fc544fcb81e0ab90949cee6);
+        
+    
+            marker_16e9550f966b46bca7937a8e00402912.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-08</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Maria Theresia Allee</b><br>Fahrtrichtung: <b>Luxemburger Ring</b><br>Fahrzeuge gesamt: <b>178</b><br>bis 15 km/h  : <b>19</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>11.8%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f3ee592547ca4e6a9e83e493d6d3174d = L.marker(
+                [50.7659069, 6.1140801],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_ef4f1d13ad114384a6df61046d942d8d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_f3ee592547ca4e6a9e83e493d6d3174d.setIcon(icon_ef4f1d13ad114384a6df61046d942d8d);
+        
+    
+            marker_f3ee592547ca4e6a9e83e493d6d3174d.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-08</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Obere Drimbornstraße</b><br>Fahrtrichtung: <b>Adenauerallee</b><br>Fahrzeuge gesamt: <b>353</b><br>bis 15 km/h  : <b>75</b><br>über 15 km/h: <b>5</b><br>Anteil Verstöße: <b>22.7%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b27804da1c56469c9c8fdb5cc252f41a = L.marker(
+                [50.7944272, 6.0526338],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_542e0b800ef345258f133685b407c702 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_b27804da1c56469c9c8fdb5cc252f41a.setIcon(icon_542e0b800ef345258f133685b407c702);
+        
+    
+            marker_b27804da1c56469c9c8fdb5cc252f41a.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-09</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Schurzelter Straße</b><br>Fahrtrichtung: <b>Seffent</b><br>Fahrzeuge gesamt: <b>338</b><br>bis 15 km/h  : <b>25</b><br>über 15 km/h: <b>3</b><br>Anteil Verstöße: <b>8.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_60082b87e5d641e0b7e0058c9d4c6a45 = L.marker(
+                [50.7846876, 6.1569881],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_0bdb14bad567456b8961b17b024abbb2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_60082b87e5d641e0b7e0058c9d4c6a45.setIcon(icon_0bdb14bad567456b8961b17b024abbb2);
+        
+    
+            marker_60082b87e5d641e0b7e0058c9d4c6a45.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-09</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Josefstraße</b><br>Fahrtrichtung: <b>Von Coels Straße</b><br>Fahrzeuge gesamt: <b>433</b><br>bis 15 km/h  : <b>21</b><br>über 15 km/h: <b>4</b><br>Anteil Verstöße: <b>5.8%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c9c71c582cc24f1f9580edb32433b838 = L.marker(
+                [50.7861008, 6.1119847],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_b990baac8ff844c4b2a1b853dcbaa5d5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_c9c71c582cc24f1f9580edb32433b838.setIcon(icon_b990baac8ff844c4b2a1b853dcbaa5d5);
+        
+    
+            marker_c9c71c582cc24f1f9580edb32433b838.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-10</b><br>Wochentag: <b>Wednesday</b><br>Messplatz: <b>Jülicher Straße</b><br>Fahrtrichtung: <b>Haaren</b><br>Fahrzeuge gesamt: <b>793</b><br>bis 15 km/h  : <b>25</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>3.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3bba9db26d914685b40d42b967eb68d5 = L.marker(
+                [50.7769363, 6.1043062],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_40263ea024fd4419b9de1f8837d4b2c9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_3bba9db26d914685b40d42b967eb68d5.setIcon(icon_40263ea024fd4419b9de1f8837d4b2c9);
+        
+    
+            marker_3bba9db26d914685b40d42b967eb68d5.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-10</b><br>Wochentag: <b>Wednesday</b><br>Messplatz: <b>Peliserker Straße</b><br>Fahrtrichtung: <b>Jülicher Straße</b><br>Fahrzeuge gesamt: <b>301</b><br>bis 15 km/h  : <b>37</b><br>über 15 km/h: <b>6</b><br>Anteil Verstöße: <b>14.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bf083bd9881c43d6842b71b5910ea086 = L.marker(
+                [50.7487663, 6.1569985],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_b8ff92bb2aed4a5eb3802dcfa2cd85d5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_bf083bd9881c43d6842b71b5910ea086.setIcon(icon_b8ff92bb2aed4a5eb3802dcfa2cd85d5);
+        
+    
+            marker_bf083bd9881c43d6842b71b5910ea086.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-15</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Rombachstraße</b><br>Fahrtrichtung: <b>Schulzentrum Brand</b><br>Fahrzeuge gesamt: <b>464</b><br>bis 15 km/h  : <b>11</b><br>über 15 km/h: <b>4</b><br>Anteil Verstöße: <b>3.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0b9bc578b74a4d20970c42488a81898b = L.marker(
+                [50.7294681, 6.1759944],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_f5156c84d93243ca88ef2b60deb09cc0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_0b9bc578b74a4d20970c42488a81898b.setIcon(icon_f5156c84d93243ca88ef2b60deb09cc0);
+        
+    
+            marker_0b9bc578b74a4d20970c42488a81898b.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-15</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Oberforstbacher Straße</b><br>Fahrtrichtung: <b>Aachener Straße</b><br>Fahrzeuge gesamt: <b>181</b><br>bis 15 km/h  : <b>14</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>8.8%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6a615971209748d8bb69cf081f951622 = L.marker(
+                [50.7498982, 6.0869299],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_11cc140e4a4f4f058d2033203708f16c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_6a615971209748d8bb69cf081f951622.setIcon(icon_11cc140e4a4f4f058d2033203708f16c);
+        
+    
+            marker_6a615971209748d8bb69cf081f951622.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-15</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Eupener Straße</b><br>Fahrtrichtung: <b>Jahnplatz</b><br>Fahrzeuge gesamt: <b>597</b><br>bis 15 km/h  : <b>64</b><br>über 15 km/h: <b>19</b><br>Anteil Verstöße: <b>13.9%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_43cd059eb4e94ed6989e5b4e71cd8704 = L.marker(
+                [50.783948, 6.1579643],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_e978a3b085084155ac1f989d48b34536 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_43cd059eb4e94ed6989e5b4e71cd8704.setIcon(icon_e978a3b085084155ac1f989d48b34536);
+        
+    
+            marker_43cd059eb4e94ed6989e5b4e71cd8704.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-15</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Nirmer Straße</b><br>Fahrtrichtung: <b>Von Coels Straße</b><br>Fahrzeuge gesamt: <b>425</b><br>bis 15 km/h  : <b>48</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>11.8%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_dc48b72cb40546de886210df5c16b1a0 = L.marker(
+                [50.7902142, 6.0883881],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_6777921b8b5a455eadf8b30b8fe33cf2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_dc48b72cb40546de886210df5c16b1a0.setIcon(icon_6777921b8b5a455eadf8b30b8fe33cf2);
+        
+    
+            marker_dc48b72cb40546de886210df5c16b1a0.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-15</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Purweider Weg</b><br>Fahrtrichtung: <b>Merowinger Straße</b><br>Fahrzeuge gesamt: <b>181</b><br>bis 15 km/h  : <b>13</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>7.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5337a2b5ca1e4af6b73f9ed6c1e0ca30 = L.marker(
+                [50.7626251, 6.0734013],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_870d1f09dd214f878088fc848ea58434 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_5337a2b5ca1e4af6b73f9ed6c1e0ca30.setIcon(icon_870d1f09dd214f878088fc848ea58434);
+        
+    
+            marker_5337a2b5ca1e4af6b73f9ed6c1e0ca30.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-16</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Limburger Straße</b><br>Fahrtrichtung: <b>Hohenstaufenallee</b><br>Fahrzeuge gesamt: <b>154</b><br>bis 15 km/h  : <b>18</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>13.0%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7d34cb2d66ef47c8b9bb6b34f6a67ae4 = L.marker(
+                [50.739705900000004, 6.0511481],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_76ccd18c5e0e469b8b7887e87b65dbad = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_7d34cb2d66ef47c8b9bb6b34f6a67ae4.setIcon(icon_76ccd18c5e0e469b8b7887e87b65dbad);
+        
+    
+            marker_7d34cb2d66ef47c8b9bb6b34f6a67ae4.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-16</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Lütticher Straße</b><br>Fahrtrichtung: <b>Innenstadt</b><br>Fahrzeuge gesamt: <b>915</b><br>bis 15 km/h  : <b>47</b><br>über 15 km/h: <b>10</b><br>Anteil Verstöße: <b>6.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6fb5939cb66a46228e4144af6b0500d7 = L.marker(
+                [50.81529020000001, 6.0584875],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_4599ad53f591487d8a69b7736fd1396c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_6fb5939cb66a46228e4144af6b0500d7.setIcon(icon_4599ad53f591487d8a69b7736fd1396c);
+        
+    
+            marker_6fb5939cb66a46228e4144af6b0500d7.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-16</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Horbacher Straße</b><br>Fahrtrichtung: <b>Horbach</b><br>Fahrzeuge gesamt: <b>575</b><br>bis 15 km/h  : <b>60</b><br>über 15 km/h: <b>11</b><br>Anteil Verstöße: <b>12.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_03b621c42a544d1d80bba85dfba4101e = L.marker(
+                [50.778215, 6.1668466],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_d3f9bc08f62847b192729b4ea9dbda6e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_03b621c42a544d1d80bba85dfba4101e.setIcon(icon_d3f9bc08f62847b192729b4ea9dbda6e);
+        
+    
+            marker_03b621c42a544d1d80bba85dfba4101e.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-16</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Von Coels Straße</b><br>Fahrtrichtung: <b>Lindenstraße</b><br>Fahrzeuge gesamt: <b>620</b><br>bis 15 km/h  : <b>39</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>6.6%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bd963999622244549dc67115a079c9dc = L.marker(
+                [50.756489800000004, 6.1448032],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_57e06947c59b47a3a931f4997b594e1b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_bd963999622244549dc67115a079c9dc.setIcon(icon_57e06947c59b47a3a931f4997b594e1b);
+        
+    
+            marker_bd963999622244549dc67115a079c9dc.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-17</b><br>Wochentag: <b>Wednesday</b><br>Messplatz: <b>Königsberger Straße</b><br>Fahrtrichtung: <b>Grauenhof</b><br>Fahrzeuge gesamt: <b>323</b><br>bis 15 km/h  : <b>24</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>7.7%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_854cee620bf24e3fa63a775fb8235410 = L.marker(
+                [50.7636569, 6.1216077],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_52623645f8c849128162a6157299683b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_854cee620bf24e3fa63a775fb8235410.setIcon(icon_52623645f8c849128162a6157299683b);
+        
+    
+            marker_854cee620bf24e3fa63a775fb8235410.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-17</b><br>Wochentag: <b>Wednesday</b><br>Messplatz: <b>Adenauerallee</b><br>Fahrtrichtung: <b>Trierer Straße</b><br>Fahrzeuge gesamt: <b>780</b><br>bis 15 km/h  : <b>26</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>3.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_53d2aec1f5724e82a71628961f5de508 = L.marker(
+                [50.7705949, 6.0883716],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_4dc6eaad29cb46a0adf96c04ceefb90a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_53d2aec1f5724e82a71628961f5de508.setIcon(icon_4dc6eaad29cb46a0adf96c04ceefb90a);
+        
+    
+            marker_53d2aec1f5724e82a71628961f5de508.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-18</b><br>Wochentag: <b>Thursday</b><br>Messplatz: <b>Aureliusstraße</b><br>Fahrtrichtung: <b>Theaterstraße</b><br>Fahrzeuge gesamt: <b>18</b><br>bis 15 km/h  : <b>0</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>0.0%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5eb5807635ed40a9a0c562c81bc1f40f = L.marker(
+                [50.7475471, 6.1645854],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_11c29140511d415fa7f4ec6706276808 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_5eb5807635ed40a9a0c562c81bc1f40f.setIcon(icon_11c29140511d415fa7f4ec6706276808);
+        
+    
+            marker_5eb5807635ed40a9a0c562c81bc1f40f.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-18</b><br>Wochentag: <b>Thursday</b><br>Messplatz: <b>Hochstraße</b><br>Fahrtrichtung: <b>Ringstraße</b><br>Fahrzeuge gesamt: <b>204</b><br>bis 15 km/h  : <b>6</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>2.9%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b7e6ef15c5c6415aa8b874a5ccea8f71 = L.marker(
+                [50.762566400000004, 6.0967836],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_9dc42e4998d54431a1f62d10bafdc6b6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_b7e6ef15c5c6415aa8b874a5ccea8f71.setIcon(icon_9dc42e4998d54431a1f62d10bafdc6b6);
+        
+    
+            marker_b7e6ef15c5c6415aa8b874a5ccea8f71.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-18</b><br>Wochentag: <b>Thursday</b><br>Messplatz: <b>Karl Marx Allee</b><br>Fahrtrichtung: <b>Adenauerallee</b><br>Fahrzeuge gesamt: <b>672</b><br>bis 15 km/h  : <b>84</b><br>über 15 km/h: <b>8</b><br>Anteil Verstöße: <b>13.7%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7de08aa988ef4df3bcc72fdbcf87d234 = L.marker(
+                [50.7868649, 6.0524025],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_41bf3a5dfd6840c3a1d71511f6dc4025 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_7de08aa988ef4df3bcc72fdbcf87d234.setIcon(icon_41bf3a5dfd6840c3a1d71511f6dc4025);
+        
+    
+            marker_7de08aa988ef4df3bcc72fdbcf87d234.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-18</b><br>Wochentag: <b>Thursday</b><br>Messplatz: <b>Seffenter Weg</b><br>Fahrtrichtung: <b>Pariser Ring</b><br>Fahrzeuge gesamt: <b>205</b><br>bis 15 km/h  : <b>32</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>16.6%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6b1f2c6a62f548f9b8710c4b282104e3 = L.marker(
+                [50.7398059, 6.0511481],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_d15dd049f84d4153ad067ec1e01dbd64 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_6b1f2c6a62f548f9b8710c4b282104e3.setIcon(icon_d15dd049f84d4153ad067ec1e01dbd64);
+        
+    
+            marker_6b1f2c6a62f548f9b8710c4b282104e3.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-18</b><br>Wochentag: <b>Thursday</b><br>Messplatz: <b>Lütticher Straße</b><br>Fahrtrichtung: <b>Innenstadt</b><br>Fahrzeuge gesamt: <b>353</b><br>bis 15 km/h  : <b>37</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>11.0%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1edfb8ebe645410ba9e39cdbabd552e1 = L.marker(
+                [50.7794146, 6.1362022],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_28edd9455ef54ca2b49b95d9dee6a360 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_1edfb8ebe645410ba9e39cdbabd552e1.setIcon(icon_28edd9455ef54ca2b49b95d9dee6a360);
+        
+    
+            marker_1edfb8ebe645410ba9e39cdbabd552e1.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-19</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Zehnthofweg</b><br>Fahrtrichtung: <b>Von Coels Straße</b><br>Fahrzeuge gesamt: <b>141</b><br>bis 15 km/h  : <b>21</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>16.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_41f5c90a41e84d3cb31ec415c98d67cb = L.marker(
+                [50.7647854, 6.1259693],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_66393c030d8a48ccb8ce5423c053c187 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_41f5c90a41e84d3cb31ec415c98d67cb.setIcon(icon_66393c030d8a48ccb8ce5423c053c187);
+        
+    
+            marker_41f5c90a41e84d3cb31ec415c98d67cb.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-19</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Lintertstraße</b><br>Fahrtrichtung: <b>Forst</b><br>Fahrzeuge gesamt: <b>289</b><br>bis 15 km/h  : <b>11</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>4.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f055299fb5314cba9a7f0e3c6f48bc49 = L.marker(
+                [50.7591088, 6.071226],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_37c91ff27d9146bfa8c1a7a930515072 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_f055299fb5314cba9a7f0e3c6f48bc49.setIcon(icon_37c91ff27d9146bfa8c1a7a930515072);
+        
+    
+            marker_f055299fb5314cba9a7f0e3c6f48bc49.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-19</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Am Hangeweiher</b><br>Fahrtrichtung: <b>Kaiser Friedrich Alle</b><br>Fahrzeuge gesamt: <b>152</b><br>bis 15 km/h  : <b>19</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>12.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_662fae9b178f4db895d27724aa587af7 = L.marker(
+                [50.7401835, 6.0460097],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_5850026a1eae4c4984b29a109b0697ec = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_662fae9b178f4db895d27724aa587af7.setIcon(icon_5850026a1eae4c4984b29a109b0697ec);
+        
+    
+            marker_662fae9b178f4db895d27724aa587af7.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-19</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Reimser Straße</b><br>Fahrtrichtung: <b>Lütticher Straße</b><br>Fahrzeuge gesamt: <b>133</b><br>bis 15 km/h  : <b>23</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>17.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ef64b0b0e09940ae9b91c22e9801c0b9 = L.marker(
+                [50.7819875, 6.0877604],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_78deb8141e7f4becbd0953a3a8285d28 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_ef64b0b0e09940ae9b91c22e9801c0b9.setIcon(icon_78deb8141e7f4becbd0953a3a8285d28);
+        
+    
+            marker_ef64b0b0e09940ae9b91c22e9801c0b9.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-19</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Saarstraße</b><br>Fahrtrichtung: <b>Monheimsallee</b><br>Fahrzeuge gesamt: <b>1199</b><br>bis 15 km/h  : <b>31</b><br>über 15 km/h: <b>3</b><br>Anteil Verstöße: <b>2.8%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ace2905669034026913eaa38a1856ddb = L.marker(
+                [50.764885400000004, 6.1259693],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_b58968eb18e94669abae851c5f2b684d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_ace2905669034026913eaa38a1856ddb.setIcon(icon_b58968eb18e94669abae851c5f2b684d);
+        
+    
+            marker_ace2905669034026913eaa38a1856ddb.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-22</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Lintertstraße</b><br>Fahrtrichtung: <b>Forst</b><br>Fahrzeuge gesamt: <b>808</b><br>bis 15 km/h  : <b>17</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>2.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_457a2c7b5a3c465599788930a96062a7 = L.marker(
+                [50.7766542, 6.1311909],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_2a7aef8fd1614366bd30820d87a7ae9b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_457a2c7b5a3c465599788930a96062a7.setIcon(icon_2a7aef8fd1614366bd30820d87a7ae9b);
+        
+    
+            marker_457a2c7b5a3c465599788930a96062a7.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-22</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Hüttenstraße</b><br>Fahrtrichtung: <b>Berliner Ring</b><br>Fahrzeuge gesamt: <b>743</b><br>bis 15 km/h  : <b>81</b><br>über 15 km/h: <b>6</b><br>Anteil Verstöße: <b>11.7%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c8b2e8b053554f3397303a9ff93afd72 = L.marker(
+                [50.772851, 6.1499385],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_edc372b2e44d458cb57ae14cfd592f57 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_c8b2e8b053554f3397303a9ff93afd72.setIcon(icon_edc372b2e44d458cb57ae14cfd592f57);
+        
+    
+            marker_c8b2e8b053554f3397303a9ff93afd72.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-22</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Krebsstraße</b><br>Fahrtrichtung: <b>Forster Straße</b><br>Fahrzeuge gesamt: <b>83</b><br>bis 15 km/h  : <b>10</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>13.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_78c1e69cc5154e05bd89a1b0ad2a7ee3 = L.marker(
+                [50.800677, 6.1289078],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_b6e170e0886f4379845ddeb628e0167a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_78c1e69cc5154e05bd89a1b0ad2a7ee3.setIcon(icon_b6e170e0886f4379845ddeb628e0167a);
+        
+    
+            marker_78c1e69cc5154e05bd89a1b0ad2a7ee3.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-22</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Würselener Straße</b><br>Fahrtrichtung: <b>Haaren</b><br>Fahrzeuge gesamt: <b>155</b><br>bis 15 km/h  : <b>17</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>11.6%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b67539799aaf4a08aea143d48645aa9b = L.marker(
+                [50.7691631, 6.0952664],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_65d35b3abd4e402b98d1e51d9f749041 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_b67539799aaf4a08aea143d48645aa9b.setIcon(icon_65d35b3abd4e402b98d1e51d9f749041);
+        
+    
+            marker_b67539799aaf4a08aea143d48645aa9b.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-22</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Kurbrunnenstraße</b><br>Fahrtrichtung: <b>Normaluhr</b><br>Fahrzeuge gesamt: <b>296</b><br>bis 15 km/h  : <b>43</b><br>über 15 km/h: <b>3</b><br>Anteil Verstöße: <b>15.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_16e6d9c56542424d900df93affe34e17 = L.marker(
+                [50.754085, 6.0787028],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_9e47ffa866d548048e19112b0a992102 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_16e6d9c56542424d900df93affe34e17.setIcon(icon_9e47ffa866d548048e19112b0a992102);
+        
+    
+            marker_16e6d9c56542424d900df93affe34e17.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-22</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Ronheider Weg</b><br>Fahrtrichtung: <b>Weißhausstraße</b><br>Fahrzeuge gesamt: <b>48</b><br>bis 15 km/h  : <b>14</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>31.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_db3b3bfbf1424b4b836249cb46f733c6 = L.marker(
+                [50.7635629, 6.0730401],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_20a6a30d32ac4b989d094415394ea301 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_db3b3bfbf1424b4b836249cb46f733c6.setIcon(icon_20a6a30d32ac4b989d094415394ea301);
+        
+    
+            marker_db3b3bfbf1424b4b836249cb46f733c6.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-23</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Hohenstaufenallee</b><br>Fahrtrichtung: <b>Innenstadt</b><br>Fahrzeuge gesamt: <b>58</b><br>bis 15 km/h  : <b>4</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>6.9%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c35c05f4dffb4b70b4465b680f6b8bcd = L.marker(
+                [50.7636629, 6.0730401],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_4614b01831fb439cab91e92311c679a7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_c35c05f4dffb4b70b4465b680f6b8bcd.setIcon(icon_4614b01831fb439cab91e92311c679a7);
+        
+    
+            marker_c35c05f4dffb4b70b4465b680f6b8bcd.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-23</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Hohenstaufenallee</b><br>Fahrtrichtung: <b>Limburger Straße</b><br>Fahrzeuge gesamt: <b>528</b><br>bis 15 km/h  : <b>81</b><br>über 15 km/h: <b>5</b><br>Anteil Verstöße: <b>16.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_78c513be832643b69ee3399cd6b13bd0 = L.marker(
+                [50.6990915, 6.1332299],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_a9541451a2064f99a18e7d2ec73855c3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_78c513be832643b69ee3399cd6b13bd0.setIcon(icon_a9541451a2064f99a18e7d2ec73855c3);
+        
+    
+            marker_78c513be832643b69ee3399cd6b13bd0.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-23</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Raerener Straße</b><br>Fahrtrichtung: <b>Sief</b><br>Fahrzeuge gesamt: <b>356</b><br>bis 15 km/h  : <b>62</b><br>über 15 km/h: <b>3</b><br>Anteil Verstöße: <b>18.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f6940612235b47f9a72e7c20673f740a = L.marker(
+                [50.7207088, 6.0368909],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_b80fda5a2dca49979dcd7a3456dcc806 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_f6940612235b47f9a72e7c20673f740a.setIcon(icon_b80fda5a2dca49979dcd7a3456dcc806);
+        
+    
+            marker_f6940612235b47f9a72e7c20673f740a.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-23</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Hergenrather Weg</b><br>Fahrtrichtung: <b>Lütticher Straße</b><br>Fahrzeuge gesamt: <b>272</b><br>bis 15 km/h  : <b>61</b><br>über 15 km/h: <b>11</b><br>Anteil Verstöße: <b>26.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0e2cb7bcd97d4669a19914ec5d635833 = L.marker(
+                [50.7549076, 6.1061973],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_69d0a66828354bc888ebc8ee726844a4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_0e2cb7bcd97d4669a19914ec5d635833.setIcon(icon_69d0a66828354bc888ebc8ee726844a4);
+        
+    
+            marker_0e2cb7bcd97d4669a19914ec5d635833.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-23</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Branderhofer Weg</b><br>Fahrtrichtung: <b>Adenauerallee</b><br>Fahrzeuge gesamt: <b>74</b><br>bis 15 km/h  : <b>12</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>16.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7e69c2c529de4813aa037850c4355087 = L.marker(
+                [50.7926763, 6.0846276],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_0485170c165444df89c34739ff21088d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_7e69c2c529de4813aa037850c4355087.setIcon(icon_0485170c165444df89c34739ff21088d);
+        
+    
+            marker_7e69c2c529de4813aa037850c4355087.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-23</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Strüverweg</b><br>Fahrtrichtung: <b>Laurensberg</b><br>Fahrzeuge gesamt: <b>325</b><br>bis 15 km/h  : <b>53</b><br>über 15 km/h: <b>7</b><br>Anteil Verstöße: <b>18.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cd2dfeeda6f347f783e68165e2f99790 = L.marker(
+                [50.7875767, 6.1293689],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_0e0124ce56d64d54a403acfcf5a4079d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_cd2dfeeda6f347f783e68165e2f99790.setIcon(icon_0e0124ce56d64d54a403acfcf5a4079d);
+        
+    
+            marker_cd2dfeeda6f347f783e68165e2f99790.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-24</b><br>Wochentag: <b>Wednesday</b><br>Messplatz: <b>Neuköllner Straße</b><br>Fahrtrichtung: <b>Charlottenburgerallee</b><br>Fahrzeuge gesamt: <b>268</b><br>bis 15 km/h  : <b>10</b><br>über 15 km/h: <b>5</b><br>Anteil Verstöße: <b>5.6%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cd81fd21b267437a9bcb5db296818a85 = L.marker(
+                [50.7592088, 6.071226],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_1f4b8576487b478a9aac462e0a10bb77 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_cd81fd21b267437a9bcb5db296818a85.setIcon(icon_1f4b8576487b478a9aac462e0a10bb77);
+        
+    
+            marker_cd81fd21b267437a9bcb5db296818a85.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-25</b><br>Wochentag: <b>Thursday</b><br>Messplatz: <b>Am Hangeweiher</b><br>Fahrtrichtung: <b>Kaiser Friedrich Alle</b><br>Fahrzeuge gesamt: <b>182</b><br>bis 15 km/h  : <b>16</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>9.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3612ffe3b1a3493f815c77221c9935af = L.marker(
+                [50.7051388, 6.1787722],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_022545e1e2f744dd99c1d8a9b7584caf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_3612ffe3b1a3493f815c77221c9935af.setIcon(icon_022545e1e2f744dd99c1d8a9b7584caf);
+        
+    
+            marker_3612ffe3b1a3493f815c77221c9935af.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-25</b><br>Wochentag: <b>Thursday</b><br>Messplatz: <b>Prämienstraße</b><br>Fahrtrichtung: <b>Schleidener Straße</b><br>Fahrzeuge gesamt: <b>205</b><br>bis 15 km/h  : <b>19</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>10.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c416ea4f8e4d42f19af72e5e947c8b18 = L.marker(
+                [50.7626664, 6.0967836],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_8747bc8ddfc54fbeb83f2e05ea947f51 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_c416ea4f8e4d42f19af72e5e947c8b18.setIcon(icon_8747bc8ddfc54fbeb83f2e05ea947f51);
+        
+    
+            marker_c416ea4f8e4d42f19af72e5e947c8b18.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-25</b><br>Wochentag: <b>Thursday</b><br>Messplatz: <b>Karl Marx Allee</b><br>Fahrtrichtung: <b>Adenauerallee</b><br>Fahrzeuge gesamt: <b>794</b><br>bis 15 km/h  : <b>81</b><br>über 15 km/h: <b>5</b><br>Anteil Verstöße: <b>10.8%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_398b55be2443488fa9b1a1fe2d852af1 = L.marker(
+                [50.7688821, 6.1380611],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_b73bb20124ef4000a07e52b75325703f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_398b55be2443488fa9b1a1fe2d852af1.setIcon(icon_b73bb20124ef4000a07e52b75325703f);
+        
+    
+            marker_398b55be2443488fa9b1a1fe2d852af1.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-26</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Reinhardstraße</b><br>Fahrtrichtung: <b>Neuenhofstraße</b><br>Fahrzeuge gesamt: <b>189</b><br>bis 15 km/h  : <b>11</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>6.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4e30b9a104a44a32a8b490f24917a79c = L.marker(
+                [50.7499982, 6.0869299],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_dd6bfeb967d540378a9840c9dc528bfa = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_4e30b9a104a44a32a8b490f24917a79c.setIcon(icon_dd6bfeb967d540378a9840c9dc528bfa);
+        
+    
+            marker_4e30b9a104a44a32a8b490f24917a79c.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-26</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Eupener Straße</b><br>Fahrtrichtung: <b>Salierallee</b><br>Fahrzeuge gesamt: <b>593</b><br>bis 15 km/h  : <b>59</b><br>über 15 km/h: <b>6</b><br>Anteil Verstöße: <b>11.0%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7af1dbe4bfe4415d83ba1381ee796de3 = L.marker(
+                [50.763756900000004, 6.1216077],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_b39bf791a45c427ca08c4bbc8d56db2b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_7af1dbe4bfe4415d83ba1381ee796de3.setIcon(icon_b39bf791a45c427ca08c4bbc8d56db2b);
+        
+    
+            marker_7af1dbe4bfe4415d83ba1381ee796de3.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-26</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Adenauerallee</b><br>Fahrtrichtung: <b>Trierer Straße</b><br>Fahrzeuge gesamt: <b>1185</b><br>bis 15 km/h  : <b>12</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>1.1%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e265641d70804523ac2377d4d230e08a = L.marker(
+                [50.7295681, 6.1759944],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_163f9d124ea6405888c6dd1cc0cf1ead = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_e265641d70804523ac2377d4d230e08a.setIcon(icon_163f9d124ea6405888c6dd1cc0cf1ead);
+        
+    
+            marker_e265641d70804523ac2377d4d230e08a.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-26</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Oberforstbacher Straße</b><br>Fahrtrichtung: <b>Kornelimünster</b><br>Fahrzeuge gesamt: <b>74</b><br>bis 15 km/h  : <b>2</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>4.1%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f8e1f1f20146444d87944c4febcb4545 = L.marker(
+                [50.699191500000005, 6.1332299],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_055db16a2f4548abb7045ee4bfd14ffc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_f8e1f1f20146444d87944c4febcb4545.setIcon(icon_055db16a2f4548abb7045ee4bfd14ffc);
+        
+    
+            marker_f8e1f1f20146444d87944c4febcb4545.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-26</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Raerener Straße</b><br>Fahrtrichtung: <b>Monschauer Straße</b><br>Fahrzeuge gesamt: <b>233</b><br>bis 15 km/h  : <b>56</b><br>über 15 km/h: <b>5</b><br>Anteil Verstöße: <b>26.2%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1689b9b3d352478f8ea956ddcb7008da = L.marker(
+                [50.7728757, 6.0592636],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_ab88e7f87ca34566974785fce9a55817 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_1689b9b3d352478f8ea956ddcb7008da.setIcon(icon_ab88e7f87ca34566974785fce9a55817);
+        
+    
+            marker_1689b9b3d352478f8ea956ddcb7008da.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-26</b><br>Wochentag: <b>Friday</b><br>Messplatz: <b>Bleiberger Straße</b><br>Fahrtrichtung: <b>Vaalser Straße</b><br>Fahrzeuge gesamt: <b>178</b><br>bis 15 km/h  : <b>8</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>4.5%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5599330b3b3d4bd89e9f7680ab7833e2 = L.marker(
+                [50.7060518, 6.1819303],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_8a07ec9920774696b1f9dc7768cc82b3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_5599330b3b3d4bd89e9f7680ab7833e2.setIcon(icon_8a07ec9920774696b1f9dc7768cc82b3);
+        
+    
+            marker_5599330b3b3d4bd89e9f7680ab7833e2.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-27</b><br>Wochentag: <b>Saturday</b><br>Messplatz: <b>Schleidener Straße</b><br>Fahrtrichtung: <b>Kornelimünster</b><br>Fahrzeuge gesamt: <b>312</b><br>bis 15 km/h  : <b>17</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>5.4%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_41d8eb35c5b240569c10566dbb3dfd6c = L.marker(
+                [50.7862008, 6.1119847],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_04678e16f3d7461e8abde2cff9cc5ac8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_41d8eb35c5b240569c10566dbb3dfd6c.setIcon(icon_04678e16f3d7461e8abde2cff9cc5ac8);
+        
+    
+            marker_41d8eb35c5b240569c10566dbb3dfd6c.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-27</b><br>Wochentag: <b>Saturday</b><br>Messplatz: <b>Jülicher Straße</b><br>Fahrtrichtung: <b>Haaren</b><br>Fahrzeuge gesamt: <b>1160</b><br>bis 15 km/h  : <b>41</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>3.7%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bcd1b25412ef4bf49d796e0c3bc3bb5a = L.marker(
+                [50.7820875, 6.0877604],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_69c72707c184444ea3568f0593d86b33 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_bcd1b25412ef4bf49d796e0c3bc3bb5a.setIcon(icon_69c72707c184444ea3568f0593d86b33);
+        
+    
+            marker_bcd1b25412ef4bf49d796e0c3bc3bb5a.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-28</b><br>Wochentag: <b>Sunday</b><br>Messplatz: <b>Saarstraße</b><br>Fahrtrichtung: <b>Monheimsallee</b><br>Fahrzeuge gesamt: <b>483</b><br>bis 15 km/h  : <b>32</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>6.8%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_54c331dcbb0f492183d41f83f4526027 = L.marker(
+                [50.8034212, 6.1485774],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_3ddf0531be5146e1b64e3eebc4babb9a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_54c331dcbb0f492183d41f83f4526027.setIcon(icon_3ddf0531be5146e1b64e3eebc4babb9a);
+        
+    
+            marker_54c331dcbb0f492183d41f83f4526027.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-28</b><br>Wochentag: <b>Sunday</b><br>Messplatz: <b>Verlautenheidener Straße</b><br>Fahrtrichtung: <b>Verlautenheide</b><br>Fahrzeuge gesamt: <b>796</b><br>bis 15 km/h  : <b>79</b><br>über 15 km/h: <b>13</b><br>Anteil Verstöße: <b>11.6%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_35e90101783d44c0bdd48c63ef91bed3 = L.marker(
+                [50.7319886, 6.1875015],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_f910212d6ec3481abdb68e434eb56d16 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_35e90101783d44c0bdd48c63ef91bed3.setIcon(icon_f910212d6ec3481abdb68e434eb56d16);
+        
+    
+            marker_35e90101783d44c0bdd48c63ef91bed3.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-29</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Dorffer Straße</b><br>Fahrtrichtung: <b>Stolberg</b><br>Fahrzeuge gesamt: <b>22</b><br>bis 15 km/h  : <b>5</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>22.7%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_02b9969d23ca46eaa77e6f4919bada4f = L.marker(
+                [50.7026711, 6.1641908],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_2c3427efd3cf48f293e148ad884e928f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_02b9969d23ca46eaa77e6f4919bada4f.setIcon(icon_2c3427efd3cf48f293e148ad884e928f);
+        
+    
+            marker_02b9969d23ca46eaa77e6f4919bada4f.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-29</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Walheimer Straße</b><br>Fahrtrichtung: <b>Walheim</b><br>Fahrzeuge gesamt: <b>144</b><br>bis 15 km/h  : <b>31</b><br>über 15 km/h: <b>4</b><br>Anteil Verstöße: <b>24.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c675d034def74f24ada7670d79bdde98 = L.marker(
+                [50.730952300000006, 6.1730085],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_8bc51b0d3bf44db3a36363b912dfc3a8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_c675d034def74f24ada7670d79bdde98.setIcon(icon_8bc51b0d3bf44db3a36363b912dfc3a8);
+        
+    
+            marker_c675d034def74f24ada7670d79bdde98.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-29</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Münsterstraße</b><br>Fahrtrichtung: <b>Oberforstbacher Straße</b><br>Fahrzeuge gesamt: <b>95</b><br>bis 15 km/h  : <b>14</b><br>über 15 km/h: <b>4</b><br>Anteil Verstöße: <b>18.9%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1278cab82c5f427e849fdc642c63d452 = L.marker(
+                [50.7634391, 6.1328458],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_e05e6a96e8554c91b896b4ef179a7aa5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_1278cab82c5f427e849fdc642c63d452.setIcon(icon_e05e6a96e8554c91b896b4ef179a7aa5);
+        
+    
+            marker_1278cab82c5f427e849fdc642c63d452.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-29</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Trierer Straße</b><br>Fahrtrichtung: <b>Kornelimünster</b><br>Fahrzeuge gesamt: <b>1472</b><br>bis 15 km/h  : <b>28</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>2.0%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0e1ed40ad89e4341beedd8035b22b2d3 = L.marker(
+                [50.784048, 6.1579643],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_9f7ec08a5890474f8c050b9b2a44ffa3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_0e1ed40ad89e4341beedd8035b22b2d3.setIcon(icon_9f7ec08a5890474f8c050b9b2a44ffa3);
+        
+    
+            marker_0e1ed40ad89e4341beedd8035b22b2d3.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-29</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Nirmer Straße</b><br>Fahrtrichtung: <b>Von Coels Straße</b><br>Fahrzeuge gesamt: <b>113</b><br>bis 15 km/h  : <b>36</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>31.9%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e71400a43112479aa16d42fa7054ce59 = L.marker(
+                [50.711331900000005, 6.1289438],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_97c1d1302fea4027bc6cf00a52fb0868 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_e71400a43112479aa16d42fa7054ce59.setIcon(icon_97c1d1302fea4027bc6cf00a52fb0868);
+        
+    
+            marker_e71400a43112479aa16d42fa7054ce59.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-29</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Kesselstraße</b><br>Fahrtrichtung: <b>Monschauer Straße</b><br>Fahrzeuge gesamt: <b>43</b><br>bis 15 km/h  : <b>3</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>9.3%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_68bf1b9513b64c36a158ead59a76a836 = L.marker(
+                [50.7500982, 6.0869299],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_3c5870c4ae884dd1891b5bfd1a89e9e5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_68bf1b9513b64c36a158ead59a76a836.setIcon(icon_3c5870c4ae884dd1891b5bfd1a89e9e5);
+        
+    
+            marker_68bf1b9513b64c36a158ead59a76a836.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-29</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Eupener Straße</b><br>Fahrtrichtung: <b>Innenstadt</b><br>Fahrzeuge gesamt: <b>572</b><br>bis 15 km/h  : <b>30</b><br>über 15 km/h: <b>4</b><br>Anteil Verstöße: <b>5.9%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c819dbb9202f4d318b8666d077fcb2a5 = L.marker(
+                [50.762725100000004, 6.0734013],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_099f912a5c29484fbfca2e3a9b17cf52 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_c819dbb9202f4d318b8666d077fcb2a5.setIcon(icon_099f912a5c29484fbfca2e3a9b17cf52);
+        
+    
+            marker_c819dbb9202f4d318b8666d077fcb2a5.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-29</b><br>Wochentag: <b>Monday</b><br>Messplatz: <b>Limburger Straße</b><br>Fahrtrichtung: <b>Hohenstaufenallee</b><br>Fahrzeuge gesamt: <b>197</b><br>bis 15 km/h  : <b>34</b><br>über 15 km/h: <b>3</b><br>Anteil Verstöße: <b>18.8%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_382fc6812ffc4aa0b010eb741f7f8083 = L.marker(
+                [50.764467800000006, 6.1499542],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_8d909133f851491dad2a585423f631d6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_382fc6812ffc4aa0b010eb741f7f8083.setIcon(icon_8d909133f851491dad2a585423f631d6);
+        
+    
+            marker_382fc6812ffc4aa0b010eb741f7f8083.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-30</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Neuenhofstraße</b><br>Fahrtrichtung: <b>Debystraße</b><br>Fahrzeuge gesamt: <b>271</b><br>bis 15 km/h  : <b>10</b><br>über 15 km/h: <b>0</b><br>Anteil Verstöße: <b>3.7%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c9e5ee9ad8c84726a039670a2cd35a24 = L.marker(
+                [50.7973305, 6.1039851],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_a55ee89fee1247f7bccccca49dd28e61 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_c9e5ee9ad8c84726a039670a2cd35a24.setIcon(icon_a55ee89fee1247f7bccccca49dd28e61);
+        
+    
+            marker_c9e5ee9ad8c84726a039670a2cd35a24.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-30</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Krefelder Straße</b><br>Fahrtrichtung: <b>Würselen</b><br>Fahrzeuge gesamt: <b>1115</b><br>bis 15 km/h  : <b>115</b><br>über 15 km/h: <b>8</b><br>Anteil Verstöße: <b>11.0%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bea5bc93ad1147a492e37bfb495f2546 = L.marker(
+                [50.799599300000004, 6.0951585],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_d29e291e75ec467eb751a1b3821a6085 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_bea5bc93ad1147a492e37bfb495f2546.setIcon(icon_d29e291e75ec467eb751a1b3821a6085);
+        
+    
+            marker_bea5bc93ad1147a492e37bfb495f2546.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-30</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Soerser Weg</b><br>Fahrtrichtung: <b>Krefelder Straße</b><br>Fahrzeuge gesamt: <b>310</b><br>bis 15 km/h  : <b>52</b><br>über 15 km/h: <b>2</b><br>Anteil Verstöße: <b>17.4%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_59f53cbe55ee4da0847f5adbc44d81b1 = L.marker(
+                [50.7114319, 6.1289438],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_e489bcc41ae44ca1a3bc4520aae8e33a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_59f53cbe55ee4da0847f5adbc44d81b1.setIcon(icon_e489bcc41ae44ca1a3bc4520aae8e33a);
+        
+    
+            marker_59f53cbe55ee4da0847f5adbc44d81b1.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-30</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Kesselstraße</b><br>Fahrtrichtung: <b>Monschauer Straße</b><br>Fahrzeuge gesamt: <b>237</b><br>bis 15 km/h  : <b>20</b><br>über 15 km/h: <b>1</b><br>Anteil Verstöße: <b>8.9%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_28604adec62f486180deb3eefcb2c67e = L.marker(
+                [50.8074708, 6.0753224],
+                {}
+            ).addTo(map_0b3d1b3d26454cda99fd470b414ccc55);
+        
+    
+            var icon_5a37fe6a11a9493eb75b829f40cc3d0d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_28604adec62f486180deb3eefcb2c67e.setIcon(icon_5a37fe6a11a9493eb75b829f40cc3d0d);
+        
+    
+            marker_28604adec62f486180deb3eefcb2c67e.bindTooltip(
+                `<div>
+                     <pre>Datum: <b>2020-06-30</b><br>Wochentag: <b>Tuesday</b><br>Messplatz: <b>Berensberger Straße</b><br>Fahrtrichtung: <b>Berenseberg</b><br>Fahrzeuge gesamt: <b>173</b><br>bis 15 km/h  : <b>40</b><br>über 15 km/h: <b>3</b><br>Anteil Verstöße: <b>24.9%</b><br></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
