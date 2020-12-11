@@ -1,0 +1,1485 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c9ae40819a7e4abd81d2fabb29a4105a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+                <div style="position: fixed; 
+                            top: 50px; right: 50px; width: 260px; height: 200px; 
+                            z-index:9998; font-size:14px; border-radius: 5px;
+                            border:2px solid grey;
+                            background-color: white; opacity: 0.9;
+                            ">
+                </div>
+                
+                <div style="position: fixed; 
+                            top: 50px; right: 50px; width: 260px; height: 200px; padding-top:5px;
+                             z-index:9999; font-size:14px;
+                            ">
+                            &nbsp<b><h4 style="margin-bottom: 0em;margin-top: 0;padding: 0.5em;position: relative; top: -20px;">   Temporäre Geschwindigkeitskontrollen in Berlin 2017-2019 </h4></b><br>
+                            
+                            <div style="position: relative; top: -20px;">
+                            &nbsp;<b> Einsatzzeit pro Verstoß </b><br>
+                              &nbsp;&nbsp;&nbsp;&nbsp;                < 60s  &nbsp; &nbsp; &nbsp; <i class="fa fa-map-marker fa-2x" style="color:red"></i><br>
+                              &nbsp;&nbsp;                          60s - 90s  &nbsp; <i class="fa fa-map-marker fa-2x" style="color:orange"></i><br> </div>
+                            
+                </div>
+                
+    
+            <div class="folium-map" id="map_c9ae40819a7e4abd81d2fabb29a4105a" ></div>
+        
+</body>
+<script>    
+    
+            var map_c9ae40819a7e4abd81d2fabb29a4105a = L.map(
+                "map_c9ae40819a7e4abd81d2fabb29a4105a",
+                {
+                    center: [52.5, 13.35],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_7186bb66ccc2487380da86850499fd1d = L.tileLayer(
+                "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"http://cartodb.com/attributions\"\u003eCartoDB\u003c/a\u003e, CartoDB \u003ca href =\"http://cartodb.com/attributions\"\u003eattributions\u003c/a\u003e | \u0026copy; \u003ca href=\"https://fragdenstaat.de/anfrage/geschwindigkeitskontrollen-von-kfz-in-berlin/\"\u003ePolizei Berlin\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var marker_b1cce22162c748f78e23706ae928fdfc = L.marker(
+                [52.5069045, 13.3483489],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_85085bb31214433ba71d04a502e3debd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_b1cce22162c748f78e23706ae928fdfc.setIcon(icon_85085bb31214433ba71d04a502e3debd);
+        
+    
+            marker_b1cce22162c748f78e23706ae928fdfc.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Lützowufer</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">15.2h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10517</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2903</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">117</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">19s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">28%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f7824f46eedc434781c0593e3efa4de5 = L.marker(
+                [52.509355, 13.5214953],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_537693556f764cc988a8a89631c577cc = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_f7824f46eedc434781c0593e3efa4de5.setIcon(icon_537693556f764cc988a8a89631c577cc);
+        
+    
+            marker_f7824f46eedc434781c0593e3efa4de5.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Alt-Friedrichsfelde</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Lichtenberg, Marzahn-Hellersdorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">93</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">320.9h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">388662</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">46566</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1721</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">237</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">25s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d7a5a7cac95144c6a0446986673cb478 = L.marker(
+                [52.5441295, 13.5710026],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_b30e9b28d2a14eb6b9360b6c833df96f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_d7a5a7cac95144c6a0446986673cb478.setIcon(icon_b30e9b28d2a14eb6b9360b6c833df96f);
+        
+    
+            marker_d7a5a7cac95144c6a0446986673cb478.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Blumberger Damm</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Marzahn-Hellersdorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">44.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">31005</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5929</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">486</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">27s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">19%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3110e9fe04df4b08841af51385f6cce9 = L.marker(
+                [52.4870117, 13.331189],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_d646618ea3634a0ab69cdc66b2d863a9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_3110e9fe04df4b08841af51385f6cce9.setIcon(icon_d646618ea3634a0ab69cdc66b2d863a9);
+        
+    
+            marker_3110e9fe04df4b08841af51385f6cce9.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Bundesallee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Charlottenburg-Wilmersdorf, Temp</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">43</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">150.5h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">116521</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">20343</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1580</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">145</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">27s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">17%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e5e89501b77c46aeb51d412204dc98ed = L.marker(
+                [52.5266336, 13.4472042],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_9e682d185fb14194a194f08d3ba600d6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_e5e89501b77c46aeb51d412204dc98ed.setIcon(icon_9e682d185fb14194a194f08d3ba600d6);
+        
+    
+            marker_e5e89501b77c46aeb51d412204dc98ed.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Danziger Str.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Pankow, Friedrichshain-Kreuzberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">23</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">85.0h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">45319</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10157</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">946</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">108</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">22%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.7h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7d61bba78e33466b8a4f22c3b61fc319 = L.marker(
+                [52.430839, 13.54772],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_ee9ecfa9cd4341f28067256a20b4b7a1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_7d61bba78e33466b8a4f22c3b61fc319.setIcon(icon_ee9ecfa9cd4341f28067256a20b4b7a1);
+        
+    
+            marker_7d61bba78e33466b8a4f22c3b61fc319.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Adlergestell</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Treptow-Köpenick</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">53</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">207.2h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">158877</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">21933</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1817</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">288</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">34s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.9h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_556d6b7864ae402ca226e4ffc4507b54 = L.marker(
+                [52.4881035, 13.3861154],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_15e20545274245859db565c34c6906a2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_556d6b7864ae402ca226e4ffc4507b54.setIcon(icon_15e20545274245859db565c34c6906a2);
+        
+    
+            marker_556d6b7864ae402ca226e4ffc4507b54.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mehringdamm</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Tempelhof-Schöneberg, Friedrichs</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">38.9h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">23660</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4083</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">222</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">23</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">34s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">17%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.2h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_07ac2ed63cf84231ae139080587d9f3d = L.marker(
+                [52.4534517, 13.3485435],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_23d7ddb514b544f39c8389ed7f0b3a13 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_07ac2ed63cf84231ae139080587d9f3d.setIcon(icon_23d7ddb514b544f39c8389ed7f0b3a13);
+        
+    
+            marker_07ac2ed63cf84231ae139080587d9f3d.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Munsterdamm</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Tempelhof-Schöneberg, Steglitz-Z</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">98.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50399</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10364</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">897</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">54</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">34s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">21%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.3h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6d4b3ae6ac174bb9a2bd0125bcd2246e = L.marker(
+                [52.4330726, 13.4642881],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_b910d5626c5a44a38b18f752299d254b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_6d4b3ae6ac174bb9a2bd0125bcd2246e.setIcon(icon_b910d5626c5a44a38b18f752299d254b);
+        
+    
+            marker_6d4b3ae6ac174bb9a2bd0125bcd2246e.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Johannisthaler Chaussee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Neukölln, Treptow-Köpenick</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">20.9h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">13103</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1880</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">117</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">40s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.3h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_df179684826443ab9986a27053cadb87 = L.marker(
+                [52.5006056, 13.4407958],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_92ba834dd17741e29746433c6ece5256 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_df179684826443ab9986a27053cadb87.setIcon(icon_92ba834dd17741e29746433c6ece5256);
+        
+    
+            marker_df179684826443ab9986a27053cadb87.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Skalitzer Str.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Friedrichshain-Kreuzberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">63</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">216.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">88207</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">18975</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">863</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">96</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">41s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">22%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.4h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c156e99ffa5846d0af60aa9b8796a414 = L.marker(
+                [52.5134456, 13.4073396],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_eaa3bd9a03e94ecf84adc8a9f529c013 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_c156e99ffa5846d0af60aa9b8796a414.setIcon(icon_eaa3bd9a03e94ecf84adc8a9f529c013);
+        
+    
+            marker_c156e99ffa5846d0af60aa9b8796a414.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Fischerinsel</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4504</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">859</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">20</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">0</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">44s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">19%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.1h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_66ded1e0d77546d9904a2f80fa009c23 = L.marker(
+                [52.5001391, 13.1553408],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_a59c121971744c36b731412a49830eaa = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_66ded1e0d77546d9904a2f80fa009c23.setIcon(icon_a59c121971744c36b731412a49830eaa);
+        
+    
+            marker_66ded1e0d77546d9904a2f80fa009c23.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Potsdamer Chaussee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Steglitz-Zehlendorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">38.3h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">20608</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3090</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">137</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">45s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">15%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.3h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b18b195f22f24b1e8814ce029eb45428 = L.marker(
+                [52.5708789, 13.3607065],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_5a43a88cda784b51be84931b977591cf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_b18b195f22f24b1e8814ce029eb45428.setIcon(icon_5a43a88cda784b51be84931b977591cf);
+        
+    
+            marker_b18b195f22f24b1e8814ce029eb45428.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Residenzstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Reinickendorf, Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">41.3h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">16083</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3093</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">222</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">45</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">48s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">19%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.9h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3676f94672c745f7a267f589920e5e87 = L.marker(
+                [52.5477934, 13.374054],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_952daa27366049cbb9c5f606f72197bf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_3676f94672c745f7a267f589920e5e87.setIcon(icon_952daa27366049cbb9c5f606f72197bf);
+        
+    
+            marker_3676f94672c745f7a267f589920e5e87.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Pankstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">57</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">201.2h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">110373</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14963</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">878</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">76</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">48s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_513baac19aa64e249148ad9597cd972e = L.marker(
+                [52.4960507, 13.3961097],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_20601a4d1df8467383a9951d355ae303 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_513baac19aa64e249148ad9597cd972e.setIcon(icon_20601a4d1df8467383a9951d355ae303);
+        
+    
+            marker_513baac19aa64e249148ad9597cd972e.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Blücherstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Friedrichshain-Kreuzberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">127</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">336.1h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">131962</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">24699</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1332</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">114</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">49s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">19%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.6h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_358b103bca6349859a3660d823c4f65d = L.marker(
+                [52.43228, 13.535237],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_37fad1b5956547789786158cb6a71062 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_358b103bca6349859a3660d823c4f65d.setIcon(icon_37fad1b5956547789786158cb6a71062);
+        
+    
+            marker_358b103bca6349859a3660d823c4f65d.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Groß-Berliner Damm</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Treptow-Köpenick</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">13.0h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1599</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">951</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">139</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">49s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">59%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.6h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f4db8c3de954437da1c2e355e0664497 = L.marker(
+                [52.4929647, 13.3880775],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_09aff62079314f4ea4778141ab56b266 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_f4db8c3de954437da1c2e355e0664497.setIcon(icon_09aff62079314f4ea4778141ab56b266);
+        
+    
+            marker_f4db8c3de954437da1c2e355e0664497.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Gneisenaustr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Friedrichshain-Kreuzberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">65</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">170.5h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">100857</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12367</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">488</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">39</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.6h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0012f7a7039c44a1946219ef5c58ba99 = L.marker(
+                [52.4527907, 13.4412742],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_21dd804f65fe4e849101853326ab312c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_0012f7a7039c44a1946219ef5c58ba99.setIcon(icon_21dd804f65fe4e849101853326ab312c);
+        
+    
+            marker_0012f7a7039c44a1946219ef5c58ba99.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Blaschkoallee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Neukölln</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">31.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14019</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2229</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">161</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">51s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">16%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d64e0458b16641a0998eb241c0765c3c = L.marker(
+                [52.4592538, 13.5126391],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_bbe0071440064965bd9e6eef9020d99a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_d64e0458b16641a0998eb241c0765c3c.setIcon(icon_bbe0071440064965bd9e6eef9020d99a);
+        
+    
+            marker_d64e0458b16641a0998eb241c0765c3c.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Spreestr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Treptow-Köpenick</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3637</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">673</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">51s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">19%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1.9h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_cb7d901125084477a11912071ac8fc3d = L.marker(
+                [52.5071228, 13.419247474125797],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_a99c904c3e5d4b5aaf1632a806a9e8fd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_cb7d901125084477a11912071ac8fc3d.setIcon(icon_a99c904c3e5d4b5aaf1632a806a9e8fd);
+        
+    
+            marker_cb7d901125084477a11912071ac8fc3d.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Michaelkirchplatz</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">20</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11.5h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1585</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">797</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">64</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">52s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1.4h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c0be6aadf9264e6181cf95e10970ebe2 = L.marker(
+                [52.5412166, 13.334036],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_dfd910d522424c85be67e9b2c9f5b723 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_c0be6aadf9264e6181cf95e10970ebe2.setIcon(icon_dfd910d522424c85be67e9b2c9f5b723);
+        
+    
+            marker_c0be6aadf9264e6181cf95e10970ebe2.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Seestr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Charlottenburg-Wilmersdorf, Mitt</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">91</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">332.2h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">402966</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">23005</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1210</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">213</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">52s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.7h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f58fc311b0ec43f8b82848c2f2d1b72b = L.marker(
+                [52.5324591, 13.3257172],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_93de36a61a614ff9a28289898c00244d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_f58fc311b0ec43f8b82848c2f2d1b72b.setIcon(icon_93de36a61a614ff9a28289898c00244d);
+        
+    
+            marker_f58fc311b0ec43f8b82848c2f2d1b72b.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Sickingenstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Charlottenburg-Wilmersdorf, Mitt</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">86.5h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30073</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5973</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">443</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">48</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">52s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">20%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.9h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7cf55e32310f4311832e14c7d7373a11 = L.marker(
+                [52.5411883, 13.4123096],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_f92e8260a2254dc0bfaffe35628a9ec0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_7cf55e32310f4311832e14c7d7373a11.setIcon(icon_f92e8260a2254dc0bfaffe35628a9ec0);
+        
+    
+            marker_7cf55e32310f4311832e14c7d7373a11.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Schönhauser Allee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Pankow</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">21.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8343</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1458</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">152</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">18</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">54s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">17%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.1h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_996ec42acf96406287b1c05ab0b383bd = L.marker(
+                [52.5354424, 13.5169255],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_edd8af405afe4dee9a028182676ea803 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_996ec42acf96406287b1c05ab0b383bd.setIcon(icon_edd8af405afe4dee9a028182676ea803);
+        
+    
+            marker_996ec42acf96406287b1c05ab0b383bd.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Landsberger Allee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Pankow, Friedrichshain-Kreuzberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">74</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">268.1h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">275284</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">17964</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">585</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">92</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">54s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.6h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2cd95c682d484430bc7ef20df2462143 = L.marker(
+                [52.5096845, 13.346268],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_b63091416a9345b3a8a563e6aa5ee83f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_2cd95c682d484430bc7ef20df2462143.setIcon(icon_b63091416a9345b3a8a563e6aa5ee83f);
+        
+    
+            marker_2cd95c682d484430bc7ef20df2462143.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Drakestr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Steglitz-Zehlendorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">27</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">106.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">59165</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7073</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">322</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">15</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">54s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.0h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_78f2d34e6644480f87391d13e29b19e5 = L.marker(
+                [52.5045916, 13.3962831],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_fef56c1ceba64d028c5374bc136885df = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_78f2d34e6644480f87391d13e29b19e5.setIcon(icon_fef56c1ceba64d028c5374bc136885df);
+        
+    
+            marker_78f2d34e6644480f87391d13e29b19e5.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Lindenstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Friedrichshain-Kreuzberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">26</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">71.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">32572</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4626</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">155</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">56s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.8h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_05fa037983cd4cdfac5797e42513ab12 = L.marker(
+                [52.5080415, 13.2743631],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_31e685d8ed44454e9dceaf3c87102e56 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_05fa037983cd4cdfac5797e42513ab12.setIcon(icon_31e685d8ed44454e9dceaf3c87102e56);
+        
+    
+            marker_05fa037983cd4cdfac5797e42513ab12.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Masurenallee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Charlottenburg-Wilmersdorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">25</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">113.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">92250</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7118</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">195</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">57s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_18db3e7cccda4e5692ef34a63576134f = L.marker(
+                [52.4739182, 13.4436224],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_6557c9090ca944a9b180107194c04261 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_18db3e7cccda4e5692ef34a63576134f.setIcon(icon_6557c9090ca944a9b180107194c04261);
+        
+    
+            marker_18db3e7cccda4e5692ef34a63576134f.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Richardplatz</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Neukölln</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">19.3h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2725</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1199</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">80</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">58s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">44%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1.8h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_86abd99d0431455fb6177a514f68648f = L.marker(
+                [52.5621136, 13.4127692],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_b6db2314862346fdad22f009ee937163 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_86abd99d0431455fb6177a514f68648f.setIcon(icon_b6db2314862346fdad22f009ee937163);
+        
+    
+            marker_86abd99d0431455fb6177a514f68648f.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Berliner Str.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Pankow</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">13.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5917</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">827</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">33</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">59s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.3h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6ed0bc359cb849d79976be65fb488895 = L.marker(
+                [52.4504896, 13.3157861],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_67a64d3ba8fb43ddb1030f42d03e8ed0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_6ed0bc359cb849d79976be65fb488895.setIcon(icon_67a64d3ba8fb43ddb1030f42d03e8ed0);
+        
+    
+            marker_6ed0bc359cb849d79976be65fb488895.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Hindenburgdamm</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Steglitz-Zehlendorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">29.0h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">16429</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1780</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">90</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">59s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.2h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f7e4750e736149fda652792e00ea101c = L.marker(
+                [52.5271114, 13.38678],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_3f6173c75f7d4051855ef21702fde214 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_f7e4750e736149fda652792e00ea101c.setIcon(icon_3f6173c75f7d4051855ef21702fde214);
+        
+    
+            marker_f7e4750e736149fda652792e00ea101c.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Hannoversche Str.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">15</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">52.4h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">22653</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3161</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">70</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">60s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ed212958b5b64e39868c5d643c5bdb43 = L.marker(
+                [52.5738333, 13.3519278],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_c9b5b36d2182403f8c99d599e7096856 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_ed212958b5b64e39868c5d643c5bdb43.setIcon(icon_c9b5b36d2182403f8c99d599e7096856);
+        
+    
+            marker_ed212958b5b64e39868c5d643c5bdb43.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Lindauer Allee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Reinickendorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">22.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">13323</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1366</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">106</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">60s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2607fab389f54cb0aba5b47d3808f541 = L.marker(
+                [52.5193107, 13.4123667],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_22203bf6954449e7a91c2a95a4c88fcd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_2607fab389f54cb0aba5b47d3808f541.setIcon(icon_22203bf6954449e7a91c2a95a4c88fcd);
+        
+    
+            marker_2607fab389f54cb0aba5b47d3808f541.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Grunerstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">21</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50.1h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">49438</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2975</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">99</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">61s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.4h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f51e4b7b0c564f498adc7763511d2b2c = L.marker(
+                [52.5090956, 13.2164365],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_4aa9d8a80ec743d285afa04d125677b8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_f51e4b7b0c564f498adc7763511d2b2c.setIcon(icon_4aa9d8a80ec743d285afa04d125677b8);
+        
+    
+            marker_f51e4b7b0c564f498adc7763511d2b2c.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Heerstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Spandau, Charlottenburg-Wilmersd</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">137</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">664.7h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">609045</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">39354</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1319</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">240</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">61s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.9h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f9441f6dca2a41629a6ec28862a7f087 = L.marker(
+                [52.509355, 13.5214953],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_dfb82f165d5c460d83dc5b72b09984b7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_f9441f6dca2a41629a6ec28862a7f087.setIcon(icon_dfb82f165d5c460d83dc5b72b09984b7);
+        
+    
+            marker_f9441f6dca2a41629a6ec28862a7f087.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Alt-Friedrichsfelde</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">60</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Lichtenberg, Marzahn-Hellersdorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">19</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">64.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">91790</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3803</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">157</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">18</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">61s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.4h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b86a1b1a228e4744819132a798fd8c85 = L.marker(
+                [52.5481192, 13.3884874],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_b1d1b2df1be8416bb12493f617244d7b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_b86a1b1a228e4744819132a798fd8c85.setIcon(icon_b1d1b2df1be8416bb12493f617244d7b);
+        
+    
+            marker_b86a1b1a228e4744819132a798fd8c85.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Brunnenstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">16.2h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7038</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">952</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">59</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">61s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.7h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_489cd082ed9f4f70a0c4a11367c6682d = L.marker(
+                [52.4885432, 13.3584241],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_82118e3e0687454dab7f2f9de3a9934f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_489cd082ed9f4f70a0c4a11367c6682d.setIcon(icon_82118e3e0687454dab7f2f9de3a9934f);
+        
+    
+            marker_489cd082ed9f4f70a0c4a11367c6682d.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Hauptstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Lichtenberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">13</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">151.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">53508</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8439</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">716</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">76</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">65s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">16%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11.7h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6d5cc62bac014ce5b0156807dd5c98ac = L.marker(
+                [52.481956, 13.4720693],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_8c6fddc1c9c845eaac9447454dbed6a8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_6d5cc62bac014ce5b0156807dd5c98ac.setIcon(icon_8c6fddc1c9c845eaac9447454dbed6a8);
+        
+    
+            marker_6d5cc62bac014ce5b0156807dd5c98ac.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Am Treptower Park</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Treptow-Köpenick</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">55</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">208.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">186949</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11491</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">287</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">65s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.8h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a02933d6a5a14c3eb288b24e10ba73de = L.marker(
+                [52.5057583, 13.386425],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_b3e0792773ae474dbff2b33e8b675ab3 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_a02933d6a5a14c3eb288b24e10ba73de.setIcon(icon_b3e0792773ae474dbff2b33e8b675ab3);
+        
+    
+            marker_a02933d6a5a14c3eb288b24e10ba73de.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Wilhelmstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte, Friedrichshain-Kreuzberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">27</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">63.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">16936</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3380</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">136</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">68s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">20%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.4h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e38694339f8b42d2b6ce3e8a979ebdec = L.marker(
+                [52.5166058, 13.3805624],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_5945522f33004a648e34c296627b9564 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_e38694339f8b42d2b6ce3e8a979ebdec.setIcon(icon_5945522f33004a648e34c296627b9564);
+        
+    
+            marker_e38694339f8b42d2b6ce3e8a979ebdec.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Unter den Linden</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">45.5h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">21185</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2419</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">62</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">68s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.8h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fe354e81b52940a6b37d7a01dfc1f08c = L.marker(
+                [52.4424073, 13.265513],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_7bec6815ef54424bb1081571bc27d5bd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_fe354e81b52940a6b37d7a01dfc1f08c.setIcon(icon_7bec6815ef54424bb1081571bc27d5bd);
+        
+    
+            marker_fe354e81b52940a6b37d7a01dfc1f08c.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Clayallee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Charlottenburg-Wilmersdorf, Steg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">17</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">48.4h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">33315</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2578</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">171</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">68s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.8h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7ba6baa822d34c5dba1b998404bc31d2 = L.marker(
+                [52.5065604, 13.4301036],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_0363ff2c74d549c0b6f544cfb9225321 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_7ba6baa822d34c5dba1b998404bc31d2.setIcon(icon_0363ff2c74d549c0b6f544cfb9225321);
+        
+    
+            marker_7ba6baa822d34c5dba1b998404bc31d2.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Köpenicker Str.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Treptow-Köpenick</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">41.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14309</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2172</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">91</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">69s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">15%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a2657dc4bf7a44408c91df94157ca0f4 = L.marker(
+                [52.4885432, 13.3584241],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_4239b57ccd8b42c0bd9488fd52dd4276 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_a2657dc4bf7a44408c91df94157ca0f4.setIcon(icon_4239b57ccd8b42c0bd9488fd52dd4276);
+        
+    
+            marker_a2657dc4bf7a44408c91df94157ca0f4.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Hauptstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Tempelhof-Schöneberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">123</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">702.3h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">335787</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">36501</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1779</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">142</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">69s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5.7h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9682fb6f212d4639ab2331f63ae677f7 = L.marker(
+                [52.4927677, 13.459615],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_d1b11a1c4fab4256b260b9d9b8cc51dd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_9682fb6f212d4639ab2331f63ae677f7.setIcon(icon_d1b11a1c4fab4256b260b9d9b8cc51dd);
+        
+    
+            marker_9682fb6f212d4639ab2331f63ae677f7.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Puschkinallee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Treptow-Köpenick</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">27</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">75.4h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">63026</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3874</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">109</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">70s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.8h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_06c72cfbb54f46d0b3b3db0e5d165f32 = L.marker(
+                [52.506383, 13.3110679],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_4f3b4490b977449aa010eb1f7b981db4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_06c72cfbb54f46d0b3b3db0e5d165f32.setIcon(icon_4f3b4490b977449aa010eb1f7b981db4);
+        
+    
+            marker_06c72cfbb54f46d0b3b3db0e5d165f32.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Kantstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Charlottenburg-Wilmersdorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">81</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">382.7h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">161626</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">19271</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">582</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">57</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">71s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.7h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_8612a27fee354e5090d2bd71cca96834 = L.marker(
+                [52.5167561, 13.5192876],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_19ba200a28104db5856a5359b7692494 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_8612a27fee354e5090d2bd71cca96834.setIcon(icon_19ba200a28104db5856a5359b7692494);
+        
+    
+            marker_8612a27fee354e5090d2bd71cca96834.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Rhinstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Lichtenberg, Marzahn-Hellersdorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">31.7h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14799</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1558</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">74</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">73s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.0h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0e2d38173daf4f029802edc53a51334c = L.marker(
+                [52.4802925, 13.5922372],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_8359d908340a42f9b2fce60654989858 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_0e2d38173daf4f029802edc53a51334c.setIcon(icon_8359d908340a42f9b2fce60654989858);
+        
+    
+            marker_0e2d38173daf4f029802edc53a51334c.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Lessingstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">13</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">34.7h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">15869</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1691</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">95</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">74s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.7h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_85e0d536a083428da1bfae17c770d116 = L.marker(
+                [52.4476701, 13.64111],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_b06d877b330c4ce29c384766fc4ee17e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_85e0d536a083428da1bfae17c770d116.setIcon(icon_b06d877b330c4ce29c384766fc4ee17e);
+        
+    
+            marker_85e0d536a083428da1bfae17c770d116.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Müggelseedamm</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Treptow-Köpenick</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">34</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">125.5h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">34263</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6130</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">172</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">74s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">18%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.7h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ebc82f8523634013a181fdcc35a7c26b = L.marker(
+                [52.5167156, 13.5451032],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_de571dce7240436bb999780564c6f560 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_ebc82f8523634013a181fdcc35a7c26b.setIcon(icon_de571dce7240436bb999780564c6f560);
+        
+    
+            marker_ebc82f8523634013a181fdcc35a7c26b.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Märkische Allee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Marzahn-Hellersdorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">59</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">355.4h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">201048</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">17068</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">693</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">102</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">75s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6.0h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_40dedfac6c9a49ccb06d3a173af35e6d = L.marker(
+                [52.5274415, 13.3286681],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_7cd9d72f36dd47f3b48907e8343a5bbb = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_40dedfac6c9a49ccb06d3a173af35e6d.setIcon(icon_7cd9d72f36dd47f3b48907e8343a5bbb);
+        
+    
+            marker_40dedfac6c9a49ccb06d3a173af35e6d.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Beusselstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">28</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">155.9h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">72274</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7371</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">259</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">25</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">76s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5.6h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7aa8c7ae418c4b5986cbebc82ba37516 = L.marker(
+                [52.5091988, 13.3713245],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_4a2679f54f6b40ec83f72064667f9722 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_7aa8c7ae418c4b5986cbebc82ba37516.setIcon(icon_4a2679f54f6b40ec83f72064667f9722);
+        
+    
+            marker_7aa8c7ae418c4b5986cbebc82ba37516.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Potsdamer Str.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte, Tempelhof-Schöneberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">85</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">339.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">201698</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">16097</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">636</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">66</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">76s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.0h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b09c93a9bbf3409db8e6736e00d792b8 = L.marker(
+                [52.4770069, 13.4497509],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_f1b5a1ce6e894c99ab79576fb68c4a7d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_b09c93a9bbf3409db8e6736e00d792b8.setIcon(icon_f1b5a1ce6e894c99ab79576fb68c4a7d);
+        
+    
+            marker_b09c93a9bbf3409db8e6736e00d792b8.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Sonnenallee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Neukölln, Treptow-Köpenick</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">104</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">327.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">153893</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">15550</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">811</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">72</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">76s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.2h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_358deb7183154a7a8876a45c3b67f826 = L.marker(
+                [52.4262029, 13.470866],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_cda1708a27c041c589dec07f6b2b3aa4 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_358deb7183154a7a8876a45c3b67f826.setIcon(icon_cda1708a27c041c589dec07f6b2b3aa4);
+        
+    
+            marker_358deb7183154a7a8876a45c3b67f826.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Fritz-Erler-Allee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Neukölln</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">38</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">115.3h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">49572</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5480</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">174</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">76s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.0h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7b59cea4e5d448dfbda888dd0a8b11b3 = L.marker(
+                [52.5703344, 13.3608121],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_fadc61fa77bc49069380368a6f3e576f = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_7b59cea4e5d448dfbda888dd0a8b11b3.setIcon(icon_fadc61fa77bc49069380368a6f3e576f);
+        
+    
+            marker_7b59cea4e5d448dfbda888dd0a8b11b3.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Emmentaler Str.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Reinickendorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14.4h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6043</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">673</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">42</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">77s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.1h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_718fdcccc6d348c1981378fc7f1d6b33 = L.marker(
+                [52.545056, 13.4451932],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_e63b0e24e56c48cdb1315146021111e0 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_718fdcccc6d348c1981378fc7f1d6b33.setIcon(icon_e63b0e24e56c48cdb1315146021111e0);
+        
+    
+            marker_718fdcccc6d348c1981378fc7f1d6b33.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Michelangelostr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Pankow</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">21</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">77.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">40908</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3596</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">85</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">78s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.7h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7da467f75d454d78892b34f5c0a38378 = L.marker(
+                [52.4132704, 13.5539256],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_0f741fac90394ee38f7c5a3c4d30c952 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_7da467f75d454d78892b34f5c0a38378.setIcon(icon_0f741fac90394ee38f7c5a3c4d30c952);
+        
+    
+            marker_7da467f75d454d78892b34f5c0a38378.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Germanenstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Pankow</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">17.4h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6552</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">791</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">44</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">79s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0d066c0d780a47258f8bd597f2c734a7 = L.marker(
+                [52.5801193, 13.4827634],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_6ccc1b928ce644cdb5dd37c79a3bd433 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_0d066c0d780a47258f8bd597f2c734a7.setIcon(icon_6ccc1b928ce644cdb5dd37c79a3bd433);
+        
+    
+            marker_0d066c0d780a47258f8bd597f2c734a7.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Dorfstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Pankow, Lichtenberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">25.1h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">12729</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1140</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">42</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">79s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.2h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1ce5211e19a54233a8834c5f0cdfab58 = L.marker(
+                [52.5012701, 13.3167948],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_ece454ddbb4a4ddea9c8e0dd750c9715 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_1ce5211e19a54233a8834c5f0cdfab58.setIcon(icon_ece454ddbb4a4ddea9c8e0dd750c9715);
+        
+    
+            marker_1ce5211e19a54233a8834c5f0cdfab58.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Schlüterstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Charlottenburg-Wilmersdorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">18.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8613</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">850</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">21</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">0</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">79s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.1h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_48a1446807ed4ecd90204c3ef47779ea = L.marker(
+                [52.4445619, 13.2908472],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_6a45aef98d854f6d9abc7b073411cece = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_48a1446807ed4ecd90204c3ef47779ea.setIcon(icon_6a45aef98d854f6d9abc7b073411cece);
+        
+    
+            marker_48a1446807ed4ecd90204c3ef47779ea.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Unter den Eichen</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Steglitz-Zehlendorf</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">121</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">470.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">382260</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">21561</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">369</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">58</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">79s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.9h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5aff03a7739445f4b02e5d66e9290b3d = L.marker(
+                [52.5318945, 13.3432152],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_c97881d7e8bb4f40b7520ab48b3940c9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_5aff03a7739445f4b02e5d66e9290b3d.setIcon(icon_c97881d7e8bb4f40b7520ab48b3940c9);
+        
+    
+            marker_5aff03a7739445f4b02e5d66e9290b3d.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Stromstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">42.2h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">16941</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1864</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">56</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">81s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.0h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1b83bacc4b79420da822098c256176e1 = L.marker(
+                [52.5629143, 13.3650408],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_19223ca42e9d4d1286a37a91245692c6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_1b83bacc4b79420da822098c256176e1.setIcon(icon_19223ca42e9d4d1286a37a91245692c6);
+        
+    
+            marker_1b83bacc4b79420da822098c256176e1.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Holländerstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Reinickendorf, Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">15</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">29.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14295</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1290</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">33</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">83s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">9%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.0h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6c0cd2f6339c473db6afdfbe5472fc60 = L.marker(
+                [52.5270469, 13.4159447],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_ed681b87faac46d085fe5c17e66beb75 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_6c0cd2f6339c473db6afdfbe5472fc60.setIcon(icon_ed681b87faac46d085fe5c17e66beb75);
+        
+    
+            marker_6c0cd2f6339c473db6afdfbe5472fc60.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mollstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Pankow, Mitte, Friedrichshain-Kr</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">31</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">109.2h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">96108</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4705</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">116</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">84s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_052292113e314b59b4db5d3f3f0f642f = L.marker(
+                [52.5157487, 13.3909354],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_d8e29eeb7e2142a398f0a061f4518138 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_052292113e314b59b4db5d3f3f0f642f.setIcon(icon_d8e29eeb7e2142a398f0a061f4518138);
+        
+    
+            marker_052292113e314b59b4db5d3f3f0f642f.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Behrenstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">16.0h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5997</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">684</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">84s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">11%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.2h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_adcb6cbac59648218233d7cc6f849d18 = L.marker(
+                [52.5134204, 13.3331822],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_a9af12e3b5db4ebb8dff3b1626eea4dd = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_adcb6cbac59648218233d7cc6f849d18.setIcon(icon_a9af12e3b5db4ebb8dff3b1626eea4dd);
+        
+    
+            marker_adcb6cbac59648218233d7cc6f849d18.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Straße des 17.Juni</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Charlottenburg-Wilmersdorf, Mitt</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">380</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1278.9h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1024337</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">54819</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1506</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">259</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">84s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3.4h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_583b88b3013c42b2a0336acd5cb6a5b6 = L.marker(
+                [52.4883609, 13.424122],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_c1597c6e14a64df0951b15524b8ff9fe = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_583b88b3013c42b2a0336acd5cb6a5b6.setIcon(icon_c1597c6e14a64df0951b15524b8ff9fe);
+        
+    
+            marker_583b88b3013c42b2a0336acd5cb6a5b6.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Urbanstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Friedrichshain-Kreuzberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">76</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">212.8h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">85696</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8956</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">519</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">45</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">86s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.8h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a6a56de423f8413a8c8339dc4972b64f = L.marker(
+                [52.5112814, 13.4305794],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_e60c578c47434d00827f4747564ac4c8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_a6a56de423f8413a8c8339dc4972b64f.setIcon(icon_e60c578c47434d00827f4747564ac4c8);
+        
+    
+            marker_a6a56de423f8413a8c8339dc4972b64f.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Andreasstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Friedrichshain-Kreuzberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">35</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">157.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">39708</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6534</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">532</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">41</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">87s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">16%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.5h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a11042f835e749f98e539643081ef15c = L.marker(
+                [52.5382018, 13.2485976],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_3267126cdc88463b8515ee7297cfe865 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_a11042f835e749f98e539643081ef15c.setIcon(icon_3267126cdc88463b8515ee7297cfe865);
+        
+    
+            marker_a11042f835e749f98e539643081ef15c.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Nonnendammallee</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">50</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Spandau</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">172</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">719.1h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">591322</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">29431</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">924</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">195</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">88s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4.2h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d94b50de6de1469fb5d314b6ffaa8176 = L.marker(
+                [52.5443237, 13.596536],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_4acc850ff27141049f69008f1ea7c554 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_d94b50de6de1469fb5d314b6ffaa8176.setIcon(icon_4acc850ff27141049f69008f1ea7c554);
+        
+    
+            marker_d94b50de6de1469fb5d314b6ffaa8176.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Zossener Str.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Friedrichshain-Kreuzberg</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">6</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7.7h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">3076</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">315</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">7</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">88s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1.3h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6289b6c168164e60a98d5be28797ee95 = L.marker(
+                [52.5512056, 13.4007898],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_007727d4e6c941db81bb01f236d52831 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_6289b6c168164e60a98d5be28797ee95.setIcon(icon_007727d4e6c941db81bb01f236d52831);
+        
+    
+            marker_6289b6c168164e60a98d5be28797ee95.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Behmstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Pankow, Mitte</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">17</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">45.6h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">23105</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">1837</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">91</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">89s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">8%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.7h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_df0914fa3b2a4e3ea443fd2df39cb63e = L.marker(
+                [52.4332972, 13.3529917],
+                {}
+            ).addTo(map_c9ae40819a7e4abd81d2fabb29a4105a);
+        
+    
+            var icon_c7346df1f52d4458bdad8de7f93c49af = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "certificate", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_df0914fa3b2a4e3ea443fd2df39cb63e.setIcon(icon_c7346df1f52d4458bdad8de7f93c49af);
+        
+    
+            marker_df0914fa3b2a4e3ea443fd2df39cb63e.bindTooltip(
+                `<div>
+                     <pre>Straßenname: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Malteserstr.</p></b>erlaubte Geschwindigkeit: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">30</p></b>Verwaltungsbezirk: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">Tempelhof-Schöneberg, Steglitz-Z</p></b>Anzahl der Kontrolltermine: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">5</p></b>Gesamtdauer der Kontrollen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14.4h</p></b>Messungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">4280</p></b>Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">583</p></b>über 20 km/h: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">10</p></b>Fahrverbote: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">0</p></b>Zeit pro Überschreitung: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">89s</p></b>Anteil von Überschreitungen: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">14%</p></b>Dauer je Kontrolle: <b><p align = "right" style="margin-bottom: 0em;margin-top: 0em;padding: 0em;">2.9h</p></b></pre>
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
